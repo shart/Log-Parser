@@ -1,5 +1,21 @@
 # Import LogCleaner module 
-Import-Module Irregular
+# Check if Irregular module is installed
+if (-not (Get-Module -ListAvailable -Name Irregular)) {
+
+  # Not installed, install from gallery
+  Write-Host "Irregular module not found, installing..."
+  Install-Module -Name Irregular -Scope CurrentUser -Force
+
+  # Import the installed module
+  Import-Module Irregular
+
+}
+else {
+
+  # Already installed, just import
+  Import-Module Irregular
+
+}
 Import-Module .\LogCleaner.psm1
 
 # Load Windows Forms assembly
